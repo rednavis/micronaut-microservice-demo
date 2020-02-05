@@ -3,60 +3,37 @@ plugins {
 }
 
 ext {
-    lombokVersion = '1.18.10'
-    jupiterVersion = '5.6.0'
+    micronautVersion = '1.2.10'
 }
 
-allprojects {
-    
-}
-
-// assumed that all subprojects are java-based modules
 subprojects {
+    apply plugin: 'java'
+    apply from: "${rootDir}/gradle/java.gradle"
+
     repositories {
         jcenter()
         mavenCentral()
     }
 
-    // needed because of multi-module configuration
-    apply plugin: 'jacoco'
-    apply plugin: 'java'
-
-    apply from: "${rootDir}/gradle/java.gradle"
-
     dependencies {
-        compile('org.projectlombok:lombok')
-        annotationProcessor('org.projectlombok:lombok')
-
-        testCompile("org.junit.jupiter:junit-jupiter")
+        annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+        annotationProcessor "io.micronaut:micronaut-inject-java"
+        annotationProcessor "io.micronaut:micronaut-validation"
+        implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+        implementation "io.micronaut:micronaut-inject"
+        implementation "io.micronaut:micronaut-validation"
+        implementation "io.micronaut:micronaut-runtime"
+        implementation "javax.annotation:javax.annotation-api"
+        implementation "io.micronaut:micronaut-http-server-netty"
+        implementation "io.micronaut:micronaut-http-client"
+        runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
+        testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+        testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+        testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testImplementation "io.micronaut.test:micronaut-test-junit5"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
     }
-
-    jacocoTestReport {
-        reports {
-            xml.enabled true
-            html.enabled false
-        }
-    }
-}
-
-task codeCoverageReport(type: JacocoReport) {
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-
-    subprojects.each {
-        sourceSets it.sourceSets.main
-    }
-
-    reports {
-        xml.enabled true
-        xml.destination file("${buildDir}/reports/jacoco/report.xml")
-        html.enabled false
-        csv.enabled false
-    }
-}
-
-// https://github.com/codecov/example-gradle#-do-you-support-multi-module-projects
-codeCoverageReport.dependsOn {
-    subprojects*.test
 }
 
 wrapper {

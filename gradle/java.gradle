@@ -9,7 +9,7 @@ compileTestJava {
     options.encoding = 'UTF-8'
 }
 
-group 'rednavis'
+group 'com.rednavis.micronaut'
 version '1.0-SNAPSHOT'
 
 configurations {
