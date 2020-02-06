@@ -1,2 +1,3 @@
 rootProject.name = 'micronaut-microservice-demo'
-include 'hello-microservice'
+include 'microservice-employee'
+include 'microservice-hello'

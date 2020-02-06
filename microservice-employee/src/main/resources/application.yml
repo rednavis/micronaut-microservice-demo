@@ -1,0 +1,23 @@
+micronaut:
+  application:
+    name: micronaut-microservice-demo
+  server:
+    host: localhost
+    port: 8081
+
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/demo?useUnicode=yes&characterEncoding=UTF-8
+    driverClassName: org.postgresql.Driver
+    username: root
+    password: root
+
+jpa:
+  default:
+    packages-to-scan:
+      - 'com.rednavis.micronaut.employee'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true

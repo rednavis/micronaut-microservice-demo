@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: micronaut-microservice-demo
+  server:
+    host: localhost
+    port: 8080

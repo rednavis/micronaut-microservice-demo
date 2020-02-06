@@ -1,4 +1,4 @@
-package com.rednavis.micronaut.example;
+package com.rednavis.micronaut.employee;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -12,18 +12,18 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 
 @MicronautTest
-public class HelloControllerTest {
+public class EmployeeControllerTest {
 
   @Inject
   @Client("/")
   RxHttpClient client;
 
   @Test
-  public void testHello() {
-    HttpRequest<String> request = HttpRequest.GET("/hello");
+  public void testEmployee() {
+    HttpRequest<String> request = HttpRequest.GET("/employee/1");
     String body = client.toBlocking().retrieve(request);
 
     assertNotNull(body);
-    assertEquals("Hello World", body);
+    assertEquals("{\"id\":1,\"name\":\"Alexey\",\"age\":31}", body);
   }
 }
