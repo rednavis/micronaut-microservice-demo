@@ -11,7 +11,7 @@ import io.micronaut.http.annotation.Produces;
 public class EmployeeController {
 
   @Inject
-  EmployeeRepository repository;
+  private EmployeeRepository repository;
 
   @Get("/{id}")
   @Produces(MediaType.APPLICATION_JSON)

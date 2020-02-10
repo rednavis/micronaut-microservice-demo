@@ -6,8 +6,9 @@ ext {
     micronautVersion = '1.2.10'
     logbackVersion = '1.2.3'
     postgreVersion = '42.2.9'
-    jpaVersion = "1.0.0"
+    jpaVersion = '1.0.0'
     jupiterVersion = '5.6.0'
+    lombokVersion = '1.18.10'
 }
 
 subprojects {
@@ -20,10 +21,13 @@ subprojects {
     }
 
     dependencies {
+        //You must place the Lombok annotation processor before the Micronaut processors
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        
         annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
         annotationProcessor "io.micronaut:micronaut-inject-java"
         annotationProcessor "io.micronaut.data:micronaut-data-processor:$jpaVersion"
-        annotationProcessor "io.micronaut.data:micronaut-data-hibernate-jpa:$jpaVersion"
         annotationProcessor "io.micronaut:micronaut-validation"
         implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
         implementation "io.micronaut:micronaut-inject"
@@ -48,5 +52,5 @@ subprojects {
 }
 
 wrapper {
-    gradleVersion = "6.1.1"
+    gradleVersion = '6.1.1'
 }

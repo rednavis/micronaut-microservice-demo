@@ -16,7 +16,7 @@ public class EmployeeControllerTest {
 
   @Inject
   @Client("/")
-  RxHttpClient client;
+  private RxHttpClient client;
 
   @Test
   public void testEmployee() {

@@ -18,6 +18,4 @@ jpa:
       - 'com.rednavis.micronaut.employee'
     properties:
       hibernate:
-        hbm2ddl:
-          auto: update
         show_sql: true
