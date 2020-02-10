@@ -1,0 +1,15 @@
+micronaut:
+  server:
+    port: -1
+
+datasources:
+  default:
+    url: jdbc:tc:postgresql:12.1://localhost/demo
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+    username: test
+    password: test
+
+flyway:
+  datasources:
+    default:
+      locations: classpath:db/migration

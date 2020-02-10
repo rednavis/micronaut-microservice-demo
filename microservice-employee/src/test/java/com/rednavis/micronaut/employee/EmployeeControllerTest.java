@@ -24,6 +24,6 @@ public class EmployeeControllerTest {
     String body = client.toBlocking().retrieve(request);
 
     assertNotNull(body);
-    assertEquals("{\"id\":1,\"name\":\"Alexey\",\"age\":31}", body);
+    assertEquals("{\"id\":1,\"name\":\"test\",\"age\":31}", body);
   }
 }

@@ -9,6 +9,7 @@ ext {
     jpaVersion = '1.0.0'
     jupiterVersion = '5.6.0'
     lombokVersion = '1.18.10'
+    testcontainersVersion = '1.12.5'
 }
 
 subprojects {
@@ -43,8 +44,13 @@ subprojects {
         testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
         testImplementation "io.micronaut.test:micronaut-test-junit5"
+        testImplementation "org.testcontainers:postgresql:$testcontainersVersion"
+        testImplementation "org.testcontainers:jdbc:$testcontainersVersion"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
 
+        // FlyWay
+        compile "io.micronaut.configuration:micronaut-flyway"
+        
         // DB
         implementation "io.micronaut.configuration:micronaut-jdbc-hikari"
         runtime "org.postgresql:postgresql:$postgreVersion"

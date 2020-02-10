@@ -7,7 +7,7 @@ micronaut:
 
 datasources:
   default:
-    url: jdbc:postgresql://localhost:5432/demo?useUnicode=yes&characterEncoding=UTF-8
+    url: jdbc:postgresql://localhost:5432/demo
     driverClassName: org.postgresql.Driver
     username: root
     password: root
@@ -18,4 +18,11 @@ jpa:
       - 'com.rednavis.micronaut.employee'
     properties:
       hibernate:
+        hbm2ddl:
+          auto: none
         show_sql: true
+
+flyway:
+  datasources:
+    default:
+      locations: classpath:db/migration
