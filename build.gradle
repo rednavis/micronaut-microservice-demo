@@ -54,6 +54,10 @@ subprojects {
         // DB
         implementation "io.micronaut.configuration:micronaut-jdbc-hikari"
         runtime "org.postgresql:postgresql:$postgreVersion"
+
+        // For Spring annotations support
+        //compile "io.micronaut:micronaut-spring"
+        //runtime "org.springframework:spring-jdbc"
     }
 }
 
